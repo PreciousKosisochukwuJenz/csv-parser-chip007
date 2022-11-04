@@ -1,5 +1,4 @@
 const csvToJson = require("convert-csv-to-json");
-const jsoncsv = require("json-csv");
 const sha256 = require("sha256");
 const fm = require("./filemanager");
 
