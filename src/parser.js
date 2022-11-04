@@ -1,4 +1,5 @@
 const csvToJson = require("convert-csv-to-json");
+const converter = require("json-2-csv");
 const sha256 = require("sha256");
 const fm = require("./filemanager");
 
@@ -32,6 +33,15 @@ const process = async () => {
         `${__dirname}/json-output/${outfilename}`,
         JSON.stringify(jsonArr)
       );
+
+      converter.json2csv(jsonArr, async (err, csv) => {
+        if (err) console.error(err);
+
+        await fm.write(
+          `${__dirname}/output-data/${strArr[0]}.output.${strArr[1]}`,
+          csv
+        );
+      });
     }
   });
 };
