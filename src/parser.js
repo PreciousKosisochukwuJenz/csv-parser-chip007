@@ -18,14 +18,14 @@ const process = async () => {
 
       for (const row of json) {
         const hash = sha256(JSON.stringify(row));
-        const chip007 = {
-          format: "chip-007",
+        const chip0007 = {
+          format: "CHIP-0007",
           minting_tool: "SuperMinter/2.5.2",
           sensitive_content: false,
           hash,
           ...row,
         };
-        jsonArr.push(chip007);
+        jsonArr.push(chip0007);
       }
 
       await fm.write(
