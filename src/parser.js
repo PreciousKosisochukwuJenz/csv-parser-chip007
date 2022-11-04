@@ -4,17 +4,17 @@ const fm = require("./filemanager");
 
 const process = async () => {
   const foldername = `${__dirname}/input-data`;
-  const csvfiles = await fm.readFolder(foldername);
+  const files = await fm.readFolder(foldername);
 
-  csvfiles.forEach(async (csv) => {
-    if (csv.endsWith("csv")) {
+  files.forEach(async (file) => {
+    if (file.endsWith("csv")) {
       let jsonArr = [];
-      const file = csv.split(".");
-      const outfilename = `${file[0]}.json`;
+      const strArr = file.split(".");
+      const outfilename = `${strArr[0]}.json`;
 
       const json = csvToJson
         .fieldDelimiter(",")
-        .getJsonFromCsv(`${__dirname}/input-data/${csv}`);
+        .getJsonFromCsv(`${__dirname}/input-data/${file}`);
 
       for (const row of json) {
         const hash = sha256(JSON.stringify(row));
